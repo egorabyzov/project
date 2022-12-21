@@ -8,11 +8,8 @@ import { pathMiddleware } from './middlewares/mid';
 import indexRouter from './routes/indexRouter';
 import authRouter from './routes/authRouter';
 import apiRouter from './routes/apiRouter';
-<<<<<<< HEAD
 import addInitRouter from './routes/addInitRouter'
-=======
 import pageRouter from './routes/pageRouter';
->>>>>>> main
 
 require('dotenv').config();
 
