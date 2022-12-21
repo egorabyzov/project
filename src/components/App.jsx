@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Login from './Login';
 import MainPage from './MainPage';
 import NavBar from './NavBar';
+import OnePage from './OnePage';
 import Reg from './Reg';
 
 export default function App({ user }) {
@@ -13,6 +14,7 @@ export default function App({ user }) {
         <Route path="/" element={<MainPage user={user} />} />
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/reg" element={<Reg />} />
+        <Route path="/page/:id" element={<OnePage />} />
       </Routes>
     </div>
   );

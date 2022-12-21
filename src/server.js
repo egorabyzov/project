@@ -8,6 +8,7 @@ import { pathMiddleware } from './middlewares/mid';
 import indexRouter from './routes/indexRouter';
 import authRouter from './routes/authRouter';
 import apiRouter from './routes/apiRouter';
+import pageRouter from './routes/pageRouter';
 
 require('dotenv').config();
 
@@ -41,5 +42,6 @@ app.use(pathMiddleware);
 app.use('/', indexRouter);
 app.use('/auth/', authRouter);
 app.use('/api/', apiRouter);
+app.use('/page', pageRouter);
 
 app.listen(PORT, () => console.log(`App has started on port ${PORT}`));
