@@ -10,13 +10,13 @@ export default function Page({ activity }) {
             style={{ textDecoration: 'none' }}
             href={`/page/${activity.id}`}
           >
-            {activity.name}
+            {activity.title}
 
           </a>
         </li>
-        <li>{activity.count}</li>
-        <li>{activity.level}</li>
-        <li>{activity.status}</li>
+       
+        <li>{activity.for}</li>
+        <li>{activity.description}</li>
 
       </ul>
 
