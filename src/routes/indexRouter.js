@@ -1,9 +1,12 @@
 import express from 'express';
+import { Initiative } from '../../db/models';
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const initState = { };
+  const activity = await Initiative.findAll();
+  console.log(activity);
+  const initState = { activity };
   res.render('Layout', initState);
 });
 // router.get('/page/:id', (req, res) => {
