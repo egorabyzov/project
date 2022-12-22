@@ -1,20 +1,20 @@
 import React from 'react';
 
-export default function OnePage({ activity }) {
+export default function OnePage() {
   const buttonHandler = () => { window.location.href = '/user/id'; };
 
   return (
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title">{activity.title}</h5>
-        <p className="card-text">{activity.description}</p>
+        <h5 className="card-title">{posts.title}</h5>
+        <p className="card-text">{posts.description}</p>
         <p className="card-text">
           Всего голосов:
           {' '}
-          {activity.for + activity.against}
+          {posts.for + posts.against}
         </p>
         <p className="card-text">
-          {activity.for}
+          {posts.for}
           {' '}
           голосов за
         </p>
