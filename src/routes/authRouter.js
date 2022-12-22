@@ -1,7 +1,7 @@
 import express from 'express';
 import { hash, compare } from 'bcrypt';
 import {
-  User, Federal, Region, City, Category,
+  User, Federal, Region, City, Level, Category
 } from '../../db/models';
 
 const auth = express.Router();
@@ -11,8 +11,9 @@ auth.get('/allvalue', async (req, res) => {
   const region = await Region.findAll();
   const city = await City.findAll();
   const category = await Category.findAll();
+  const level = await Level.findAll();
   res.json({
-    fed, region, city, category,
+    fed, region, city, category, level,
   });
 });
 
