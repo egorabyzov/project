@@ -5,7 +5,6 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
   const activity = await Initiative.findAll();
-  console.log(activity);
   const initState = { activity };
   res.render('Layout', initState);
 });
