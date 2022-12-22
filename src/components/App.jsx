@@ -8,7 +8,7 @@ import Reg from './Reg';
 import AddInit from './AddInit';
 
 
-export default function App({ user }) {
+export default function App({user}) {
   return (
     <div className="container">
       <NavBar user={user} />

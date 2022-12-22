@@ -1,11 +1,24 @@
 import express from 'express';
 import { hash, compare } from 'bcrypt';
-import { User } from '../../db/models';
+import {
+  User, Federal, Region, City,
+} from '../../db/models';
 
 const auth = express.Router();
 
-auth.get('/reg', (req, res) => {
-  res.render('Layout');
+auth.get('/allvalue', async (req, res) => {
+  const fed = await Federal.findAll();
+  const region = await Region.findAll();
+  const city = await City.findAll();
+  res.json({ fed, region, city });
+});
+
+auth.get('/reg', async (req, res) => {
+  const fed = await Federal.findAll();
+  const region = await Region.findAll();
+  const city = await City.findAll();
+  const initState = { fed, region, city };
+  res.render('Layout', initState);
 });
 
 auth.get('/login', (req, res) => {
@@ -13,10 +26,13 @@ auth.get('/login', (req, res) => {
 });
 
 auth.post('/reg', async (req, res) => {
-  const { name, email, password } = req.body; // забираем все нужные свойства;
+  // console.log(req.body);
+  const {
+    surname, name, patronymic, email, password, federal, region, city,
+  } = req.body; // забираем все нужные свойства;
   // console.log(req.body);
   // если user ввел только пароль или только логин возвращаем сообщение которое покажем над формой
-  if (!name || !email || !password) return res.status(400).json({ message: 'Все поля обязательны для заполнения!' });
+  if (!surname || !name || !patronymic || !email || !password || !federal || !region || !city) return res.status(400).json({ message: 'Все поля обязательны для заполнения!' });
 
   // пароль был введен? тогда хэшируем его
   const hashPass = await hash(password, 10);
@@ -25,11 +41,13 @@ auth.post('/reg', async (req, res) => {
       // возвращает при этом найденный обьект и false либо созданный объект и true
       where: { email },
       defaults: {
-        name, email, password: hashPass,
+        surname, name, patronymic, email, password: hashPass, federal, region, city,
       },
     });
     if (!isCreated) return res.status(401).json({ message: 'Вы уже зарегистрированы, пожалуйста, пройдите авторизацию!' });
-    req.session.user = { id: user.id, name: user.name, email: user.email };
+    req.session.user = {
+      id: user.id, name: user.name, email: user.email,
+    };
     res.sendStatus(200);
   } catch (err) {
     // console.log(err);
