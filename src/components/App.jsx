@@ -5,7 +5,7 @@ import MainPage from './MainPage';
 import NavBar from './NavBar';
 import Reg from './Reg';
 
-export default function App({ user }) {
+export default function App({user}) {
   return (
     <div className="container">
       <NavBar user={user} />

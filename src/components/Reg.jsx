@@ -1,8 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 export default function Registration() {
   const [error, setError] = useState(null);
-  const [input, setInput] = useState({});
+  const [input, setInput] = useState({
+    surname: '', name: '', patronymic: '', password: '', federal: '', region: '', city: '', email: '',
+  });
+  const [fo, setFo] = useState({});
+
+  useEffect(() => {
+    fetch('/auth/allvalue')
+      .then((res) => res.json())
+      .then((data) => setFo(data));
+  }, []);
 
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -22,23 +31,24 @@ export default function Registration() {
       setError(data.message);
     }
   };
+
   const changeHandler = (e) => setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   return (
     <div
       className="container"
       style={{
         width: '400px',
-        margin: 'auto',
-        color: 'white',
-        marginTop: '15%',
+        margin: '0 auto',
+        marginTop: '3%',
       }}
     >
+      <h1>Регистрация</h1>
       <form onSubmit={submitHandler}>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         <div className="field">
           <label className="label" />
           <div className="control has-icons-left has-icons-right">
-            <input className="form-control" value={input.name} name="name" onChange={changeHandler} type="text" placeholder="login" />
+            <input className="form-control" value={input.surname} name="surname" onChange={changeHandler} type="text" placeholder="Фамилия" />
             <span className="icon is-left">
               <i className="rbc-icon github" />
             </span>
@@ -47,7 +57,25 @@ export default function Registration() {
         <div className="field">
           <label className="label" />
           <div className="control has-icons-left has-icons-right">
-            <input className="form-control" value={input.email} name="email" onChange={changeHandler} type="text" placeholder="email" />
+            <input className="form-control" value={input.name} name="name" onChange={changeHandler} type="text" placeholder="Имя" />
+            <span className="icon is-left">
+              <i className="rbc-icon github" />
+            </span>
+          </div>
+        </div>
+        <div className="field">
+          <label className="label" />
+          <div className="control has-icons-left has-icons-right">
+            <input className="form-control" value={input.patronymic} name="patronymic" onChange={changeHandler} type="text" placeholder="Отчество" />
+            <span className="icon is-left">
+              <i className="rbc-icon github" />
+            </span>
+          </div>
+        </div>
+        <div className="field">
+          <label className="label" />
+          <div className="control has-icons-left has-icons-right">
+            <input className="form-control" value={input.email} name="email" onChange={changeHandler} type="text" placeholder="Почта" />
             <span className="icon is-left">
               <i className="rbc-icon github" />
             </span>
@@ -56,10 +84,49 @@ export default function Registration() {
         <div className="field">
           <label className="label" />
           <div className="control has-icons-left">
-            <input className="form-control" value={input.password} name="password" onChange={changeHandler} type="password" placeholder="password" />
+            <input className="form-control" value={input.password} name="password" onChange={changeHandler} type="password" placeholder="Пароль" />
             <span className="icon is-left">
               <i className="rbc-icon lock" />
             </span>
+          </div>
+        </div>
+        <br />
+        <div className="field">
+          <label className="label">Федеральный округ</label>
+          <div
+            className="wrapper"
+          >
+            <select value={input.federal} name="federal" id="" className="form-control" onChange={changeHandler}>
+              {fo.fed?.map((el) => (
+                <option key={el.id}>{el.name}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <br />
+        <div className="field">
+          <label className="label">Регион</label>
+          <div
+            className="wrapper"
+          >
+            <select value={input.region} name="region" id="" className="form-control" onChange={changeHandler}>
+              {fo.region?.map((el) => (
+                <option key={el.id}>{el.name}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <br />
+        <div className="field">
+          <label className="label">Муниципалитет</label>
+          <div
+            className="wrapper"
+          >
+            <select value={input.city} name="city" id="" className="form-control" onChange={changeHandler}>
+              {fo.city?.map((el) => (
+                <option key={el.id}>{el.name}</option>
+              ))}
+            </select>
           </div>
         </div>
         <div className="buttons">

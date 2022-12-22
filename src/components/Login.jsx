@@ -37,7 +37,7 @@ export default function login() {
         <div className="field">
           <label className="label" />
           <div className="control has-icons-left has-icons-right">
-            <input className="form-control" value={input.email} name="email" onChange={changeHandler} type="text" placeholder="email" />
+            <input className="form-control" value={input.email} name="email" onChange={changeHandler} type="text" placeholder="Почта" />
             <span className="icon is-left">
               <i className="rbc-icon github" />
             </span>
@@ -46,7 +46,7 @@ export default function login() {
         <div className="field">
           <label className="label" />
           <div className="control has-icons-left">
-            <input className="form-control" value={input.password} name="password" onChange={changeHandler} type="password" placeholder="password" />
+            <input className="form-control" value={input.password} name="password" onChange={changeHandler} type="password" placeholder="Пароль" />
             <span className="icon is-left">
               <i className="rbc-icon lock" />
             </span>
