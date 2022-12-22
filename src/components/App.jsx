@@ -13,8 +13,8 @@ export default function App({ user, post, activity }) {
     <div className="container">
       <NavBar user={user} />
       <Routes>
-        <Route path="/" element={<MainPage activity={activity} />} />
-        <Route path="/add" element={<AddInit />} />
+        <Route path="/" element={<MainPage activity={activity} user={user} />} />
+        {user && (<Route path="/add" element={<AddInit />} />)}
         <Route path="/auth/login" element={<Login />} />
         <Route path="/auth/reg" element={<Reg />} />
         <Route path="/page/:id" element={<OnePage activity={activity} />} />

@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
 
-export default function New() {
+export default function AddInit() {
   const [input, setInput] = useState({});
   const changeHandler = (e) => setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   const submitHandler = async (e) => {
     e.preventDefault();
-    await fetch('/add', {
+    const respons = await fetch('/add/in', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(input),
     });
+    if (respons.ok) {
+      window.location.href = '/';
+    }
   };
 
   return (
@@ -39,21 +42,23 @@ export default function New() {
             name="title"
             type="text"
             className="block w-100 no-outline no-border pad-1 mar-b-2"
+            value={input.title}
             onChange={changeHandler}
           />
         </label>
         <label htmlFor="body-textarea" className="block mar-b-1">
           Описание и мотивация:
           <textarea
+            value={input.description}
             onChange={changeHandler}
             id="body-textarea"
-            name="body"
+            name="description"
             className="block w-100 h-10 no-resize no-outline no-border no-resize pad-1 mar-b-2"
           />
         </label>
         <label htmlFor="date-textarea" className="block w-100 no-outline no-border pad-1 mar-b-2">
           На каком уровне будет реализована инициатива:
-          <select className="block w-100 no-outline no-border pad-1 mar-b-2">
+          <select name="levelId" value={input.levelId} onChange={changeHandler} className="block w-100 no-outline no-border pad-1 mar-b-2">
             <option value="DEFAULT">Выберите</option>
             <option value="1">Федеральный</option>
             <option value="2">Региональный</option>
@@ -63,7 +68,7 @@ export default function New() {
 
         <label htmlFor="date-textarea" className="block w-100 no-outline no-border pad-1 mar-b-2">
           Категория:
-          <select className="block w-100 no-outline no-border pad-1 mar-b-2">
+          <select value={input.categoryId} onChange={changeHandler} name="categoryId" className="block w-100 no-outline no-border pad-1 mar-b-2">
             <option value="DEFAULT">Выберите</option>
             <option value="1">Социальная защита</option>
             <option value="2">Транспорт и дороги</option>
@@ -74,7 +79,7 @@ export default function New() {
 
         <label htmlFor="date-textarea">
           Выберите крайний срок:
-          <input type="date" className="form-control" />
+          <input name="term" value={input.term} onChange={changeHandler} type="date" className="form-control" />
         </label>
         <div className="buttons">
           <button style={{ marginTop: '1rem', backgroundColor: 'grey' }} type="submit" className="btn btn-dark" tabIndex="0">Отправить</button>
