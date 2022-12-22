@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-// import { redirect } from 'react-router-dom';
-// import Page from './Page';
+import { redirect } from 'react-router-dom';
+import Page from './Page';
 
 // условно нам это приходит из БД
 
@@ -8,6 +8,8 @@ export default function MainPage({ user }) {
   const [init, setInit] = useState([]);
   const [searchLevel, setSearchLevel] = useState({ razdel: '', level: '' });
   const [fo, setFo] = useState({});
+  // console.log(activity);
+  const [cards, setCards] = useState(activity);
 
   console.log(searchLevel, 'searchLevel');
   useEffect(() => {
@@ -33,7 +35,7 @@ export default function MainPage({ user }) {
     setSearchLevel((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
   console.log(init);
-  // const buttonHandler = () => { window.location.href = '/add'; };
+  const buttonHandler = () => { window.location.href = '/add'; };
 
   return (
     <div className="container">
@@ -72,6 +74,9 @@ export default function MainPage({ user }) {
           </div>
         </div>
       ))}
+
+      <div>{cards?.map((init) => <Page key={init.id} activity={init} />)}</div>
+      <button onClick={buttonHandler} style={{ margin: '0 auto', display: 'flex' }} type="button" className="btn btn-primary">Добавить инициативу</button>
     </div>
 
   );
