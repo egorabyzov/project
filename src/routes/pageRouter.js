@@ -3,15 +3,11 @@ import { Initiative } from '../../db/models';
 
 const router = Router();
 
-router.get('/:id', (req, res) => {
-  const initState = {};
-  res.render('Layout', initState);
-});
-
 router.get('/:id', async (req, res) => {
   const post = await Initiative.findOne({ where: { id: req.params.id } });
-  res.json(post);
-  console.log(post)
+  const initState = { post };
+  res.render('Layout', initState);
+  // res.json(post);
 });
 
 // .get(async (req, res) => {
@@ -24,6 +20,3 @@ router.get('/:id', async (req, res) => {
 // });
 
 export default router;
-
-// взяли из базы данных опреденный пост
-// const post = Initiative.findOne({ where: { id: req.params.id } });
