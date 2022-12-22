@@ -1,24 +1,12 @@
 import React, { useState } from 'react';
-import { redirect } from 'react-router-dom';
+// import { redirect } from 'react-router-dom';
 import Page from './Page';
 
 // условно нам это приходит из БД
 
-export default function MainPage() {
-  // activity это приходящий массив из БД
-  const activity = [{
-    id: 2,
-    name: 'Выполнение работ в городской гимназии',
-    count: 'Количество проголосовавших: 126',
-    level: 'Уровень: федеральный',
-    status: 'Статус: заявка одобрена',
-  }, {
-    id: 3,
-    name: 'Ремонт детской площадки',
-    count: 'Количество проголосовавших:223',
-    level: 'Уровень: региональный',
-    status: 'Статус: заявка одобрена',
-  }];
+export default function MainPage({ activity }) {
+  // console.log(activity);
+  const [cards, setCards] = useState(activity);
 
   const buttonHandler = () => { window.location.href = '/add'; };
 
@@ -26,8 +14,7 @@ export default function MainPage() {
     <div className="container">
       <h2 style={{ marginTop: '20px' }}>Городские инициативы</h2>
 
-      {/* <a href="/add" style={{ width: '300px', margin: '0 auto', display: 'flex' }} type="button" className="btn btn-primary">Добавить инициативу</a> */}
-      <div>{activity?.map((init) => <Page key={init.id} activity={init} />)}</div>
+      <div>{cards?.map((init) => <Page key={init.id} activity={init} />)}</div>
       <button onClick={buttonHandler} style={{ margin: '0 auto', display: 'flex' }} type="button" className="btn btn-primary">Добавить инициативу</button>
     </div>
   );
