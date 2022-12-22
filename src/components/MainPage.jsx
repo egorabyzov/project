@@ -14,7 +14,12 @@ export default function MainPage({ activity }) {
     <div className="container">
       <h2 style={{ marginTop: '20px' }}>Городские инициативы</h2>
 
-      <div>{cards?.map((init) => <Page key={init.id} activity={init} />)}</div>
+      <div style={{
+        display: 'flex', flexWrap: 'wrap', columnGap: '25px', rowGap: '25px',
+      }}
+      >
+        {cards?.map((init) => <Page key={init.id} activity={init} />)}
+      </div>
       <button onClick={buttonHandler} style={{ margin: '0 auto', display: 'flex' }} type="button" className="btn btn-primary">Добавить инициативу</button>
     </div>
   );
