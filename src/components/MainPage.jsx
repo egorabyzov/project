@@ -4,7 +4,7 @@ import Page from './Page';
 
 // условно нам это приходит из БД
 
-export default function MainPage({ user }) {
+export default function MainPage({ user, activity }) {
   const [init, setInit] = useState([]);
   const [searchLevel, setSearchLevel] = useState({ razdel: '', level: '' });
   const [fo, setFo] = useState({});
@@ -76,7 +76,6 @@ export default function MainPage({ user }) {
       ))}
 
       <div>{cards?.map((init) => <Page key={init.id} activity={init} />)}</div>
-      <button onClick={buttonHandler} style={{ margin: '0 auto', display: 'flex' }} type="button" className="btn btn-primary">Добавить инициативу</button>
     </div>
 
   );
