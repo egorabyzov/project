@@ -14,13 +14,9 @@ router.get('/:id', async (req, res) => {
 //   res.redirect('/:id'), { id };
 // });
 
-
 router.patch('/api/vote', async (req, res) => {
-req.body = initiative.id 
-
-
-
-})
+  req.body = initiative.id;
+});
 
 export default router;
 

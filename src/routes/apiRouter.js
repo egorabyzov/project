@@ -1,8 +1,11 @@
 import express from 'express';
-import { Todo, User } from '../../db/models';
-import checkUser from '../middlewares/isReg';
-import checkAuth from '../middlewares/isAuth';
+import { Initiative, Category, Level } from '../../db/models';
 
 const api = express.Router();
+
+api.get('/initall', async (req, res) => {
+  const init = await Initiative.findAll({ include: [Category, Level] });
+  res.json(init);
+});
 
 export default api;

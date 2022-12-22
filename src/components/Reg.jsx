@@ -39,7 +39,7 @@ export default function Registration() {
       style={{
         width: '400px',
         margin: '0 auto',
-        marginTop: '3%',
+        marginTop: '2%',
       }}
     >
       <h1>Регистрация</h1>
