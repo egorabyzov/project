@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Page({ activity }) {
+export default function Page({ init }) {
   return (
 
     <div className="task" style={{ margin: '15px 0', flex: '1 1 45%' }}>
@@ -8,67 +8,33 @@ export default function Page({ activity }) {
         <li style={{ listStyleType: 'none' }} className="pipe-separate t-light-green left">
           <a
             style={{ textDecoration: 'none' }}
-            href={`/page/${activity.id}`}
+            href={`/page/${init.id}`}
           >
-            {activity.title}
-
+            {init.title}
 
           </a>
         </li>
-
-        <p style ={{color: 'gre'}}>
-          Уровень инициативы:
-          {activity.levelId}
-        </p>
-
+        <div style={{ color: 'grey', marginTop: '20px', lineHeight: '10px' }} className="contentInit">
+          <p>
+            Уровень инициативы:
+            {init.levelId}
+          </p>
+          <p>
+            {' '}
+            Всего голосов:
+            {init.for + init.against}
+          </p>
+          <p>
+            {' '}
+            Срок окончания:
+            {init.term}
+          </p>
+        </div>
         {/* <li>{activity.description}</li> */}
 
       </ul>
 
     </div>
 
-  // <div className="card" style={{ width: '18rem' }}>
-  //   <div className="card-body">
-  //     <a href="/" className="card-title">{activity.title}</a>
-  //     <p className="card-subtitle mb-2 text-muted">
-  //       Уровень инициативы:
-  //       {' '}
-  //       {activity.level}
-  //     </p>
-
-  //   </div>
-  // </div>
-
-  // <div className="container text-center">
-  //   <div className="row">
-  //     <div className="col">
-  //       <div className="card" style={{ width: '18rem' }}>
-  //         <div className="card-body">
-  //           <a href="/" className="card-title">{activity.title}</a>
-  //           <p className="card-subtitle mb-2 text-muted">
-  //             Уровень инициативы:
-  //             {' '}
-  //             {activity.level}
-  //           </p>
-
-  //         </div>
-  //       </div>
-  //     </div>
-  //     <div className="col">
-  //       <div className="card" style={{ width: '18rem' }}>
-  //         <div className="card-body">
-  //           <a href="/" className="card-title">{activity.title}</a>
-  //           <p className="card-subtitle mb-2 text-muted">
-  //             Уровень инициативы:
-  //             {' '}
-  //             {activity.level}
-  //           </p>
-
-  //         </div>
-  //       </div>
-  //     </div>
-
-  //   </div>
-  // </div>
   );
 }

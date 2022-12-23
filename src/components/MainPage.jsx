@@ -5,24 +5,20 @@ import Page from './Page';
 // условно нам это приходит из БД
 
 export default function MainPage({ user, activity }) {
+  console.log(activity);
   const [init, setInit] = useState([]);
   const [searchLevel, setSearchLevel] = useState({ razdel: '', level: '' });
   const [fo, setFo] = useState({});
   // console.log(activity);
   const [cards, setCards] = useState(activity);
 
-  console.log(searchLevel, 'searchLevel');
+  // console.log(searchLevel, 'searchLevel');
   useEffect(() => {
     fetch('api/initall')
       .then((res) => res.json())
       .then((data) => setInit(data));
   }, []);
 
-  // useEffect(() => {
-  //   fetch('api/initall')
-  //     .then((res) => res.json())
-  //     .then((data) => setInit((data.filter((el) => el.Level.name === (searchLevel?.razdel || searchLevel?.level))) || data));
-  // }, [searchLevel]);
 
   useEffect(() => {
     console.log('YA TUT');
@@ -62,7 +58,7 @@ export default function MainPage({ user, activity }) {
       </div>
       <h2 style={{ marginTop: '20px' }}>Городские инициативы</h2>
       <a href="/add" style={{ width: '300px', margin: '0 auto', display: 'flex' }} type="button" className="btn btn-primary">Добавить инициативу</a>
-      {init?.map((el) => (
+      {/* {init?.map((el) => (
         <div className="card-group">
           <div className="card">
             <div className="card-body">
@@ -73,10 +69,23 @@ export default function MainPage({ user, activity }) {
             </div>
           </div>
         </div>
-      ))}
+      ))} */}
 
-      <div>{cards?.map((init) => <Page key={init.id} activity={init} />)}</div>
-      <button onClick={buttonHandler} style={{ margin: '0 auto', display: 'flex' }} type="button" className="btn btn-primary">Добавить инициативу</button>
+      <div>{cards?.map((init) => <Page  key={init.id} init={init} />)}</div>
+      <button
+        onClick={buttonHandler}
+        style={{
+          margin: '0 auto',
+          display: 'flex',
+          position: 'sticky',
+          top: '10px',
+        }}
+        type="button"
+        className="btn btn-primary"
+      >
+        Добавить инициативу
+
+      </button>
     </div>
 
   );

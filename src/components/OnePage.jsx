@@ -1,20 +1,20 @@
 import React from 'react';
 
-export default function OnePage() {
+export default function OnePage({post}) {
   const buttonHandler = () => { window.location.href = '/user/id'; };
 
   return (
     <div className="card">
       <div className="card-body">
-        <h5 className="card-title">{posts.title}</h5>
-        <p className="card-text">{posts.description}</p>
+        <h5 className="card-title">{post.title}</h5>
+        <p className="card-text">{post.description}</p>
         <p className="card-text">
           Всего голосов:
           {' '}
-          {posts.for + posts.against}
+          {post.for + post.against}
         </p>
         <p className="card-text">
-          {posts.for}
+          {post.for}
           {' '}
           голосов за
         </p>
