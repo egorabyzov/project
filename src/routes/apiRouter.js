@@ -8,4 +8,8 @@ api.get('/initall', async (req, res) => {
   res.json(init);
 });
 
+// router.patch('/api/vote', async (req, res) => {
+//   req.body = initiative.id;
+// });
+
 export default api;
