@@ -10,7 +10,7 @@ import authRouter from './routes/authRouter';
 import apiRouter from './routes/apiRouter';
 import addInitRouter from './routes/addInitRouter';
 import pageRouter from './routes/pageRouter';
-import userRouter from './routes/pageRouter';
+import userRouter from './routes/userRouter';
 
 require('dotenv').config();
 
