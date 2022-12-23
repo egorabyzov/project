@@ -19,7 +19,6 @@ export default function MainPage({ user, activity }) {
       .then((data) => setInit(data));
   }, []);
 
-
   useEffect(() => {
     console.log('YA TUT');
     fetch('/auth/allvalue')
@@ -57,7 +56,7 @@ export default function MainPage({ user, activity }) {
         </select>
       </div>
       <h2 style={{ marginTop: '20px' }}>Городские инициативы</h2>
-      <a href="/add" style={{ width: '300px', margin: '0 auto', display: 'flex' }} type="button" className="btn btn-primary">Добавить инициативу</a>
+      {/* <a href="/add" style={{ width: '300px', margin: '0 auto', display: 'flex' }} type="button" className="btn btn-primary">Добавить инициативу</a> */}
       {/* {init?.map((el) => (
         <div className="card-group">
           <div className="card">
@@ -71,14 +70,14 @@ export default function MainPage({ user, activity }) {
         </div>
       ))} */}
 
-      <div>{cards?.map((init) => <Page  key={init.id} init={init} />)}</div>
       <button
         onClick={buttonHandler}
         style={{
           margin: '0 auto',
           display: 'flex',
           position: 'sticky',
-          top: '10px',
+          top: '0px',
+          marginTop: '30px',
         }}
         type="button"
         className="btn btn-primary"
@@ -86,6 +85,7 @@ export default function MainPage({ user, activity }) {
         Добавить инициативу
 
       </button>
+      <div>{cards?.map((init) => <Page key={init.id} init={init} />)}</div>
     </div>
 
   );
