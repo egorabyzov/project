@@ -1,10 +1,10 @@
 import express from 'express';
-import { Initiative } from '../../db/models';
+import { Initiative, Level, Category } from '../../db/models';
 
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-  const activity = await Initiative.findAll();
+  const activity = await Initiative.findAll({ include: [Level, Category] });
   // console.log(activity);
   const initState = { activity };
   res.render('Layout', initState);

@@ -19,6 +19,7 @@ export default function App({ user, post, activity, posts }) {
         <Route path="/auth/reg" element={<Reg />} />
         <Route path="/page/:id" element={<OnePage post={post} />} />
         <Route path="/user/:id" element={<UserPosts posts={posts} />} />
+    
       </Routes>
     </div>
   );

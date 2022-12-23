@@ -5,8 +5,9 @@ import Page from './Page';
 // условно нам это приходит из БД
 
 export default function MainPage({ user, activity }) {
-  console.log(activity);
+  // console.log(activity);
   const [init, setInit] = useState([]);
+  // console.log(init);
   const [searchLevel, setSearchLevel] = useState({ razdel: '', level: '' });
   const [fo, setFo] = useState({});
   // console.log(activity);
@@ -19,7 +20,6 @@ export default function MainPage({ user, activity }) {
       .then((data) => setInit(data));
   }, []);
 
-
   useEffect(() => {
     console.log('YA TUT');
     fetch('/auth/allvalue')
@@ -30,7 +30,7 @@ export default function MainPage({ user, activity }) {
   const changeHandler = (e) => {
     setSearchLevel((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
-  console.log(init);
+  // console.log(init);
   const buttonHandler = () => { window.location.href = '/add'; };
 
   return (
@@ -57,28 +57,16 @@ export default function MainPage({ user, activity }) {
         </select>
       </div>
       <h2 style={{ marginTop: '20px' }}>Городские инициативы</h2>
-      <a href="/add" style={{ width: '300px', margin: '0 auto', display: 'flex' }} type="button" className="btn btn-primary">Добавить инициативу</a>
-      {/* {init?.map((el) => (
-        <div className="card-group">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">{el.title}</h5>
-              <h5 className="card-title">{el.term }</h5>
-              <h5 className="card-title">{el.Level.name}</h5>
-              <h5 className="card-title">{el.Category.name}</h5>
-            </div>
-          </div>
-        </div>
-      ))} */}
 
-      <div>{cards?.map((init) => <Page  key={init.id} init={init} />)}</div>
+
       <button
         onClick={buttonHandler}
         style={{
           margin: '0 auto',
           display: 'flex',
           position: 'sticky',
-          top: '10px',
+          top: '0px',
+          marginTop: '30px',
         }}
         type="button"
         className="btn btn-primary"
@@ -86,6 +74,7 @@ export default function MainPage({ user, activity }) {
         Добавить инициативу
 
       </button>
+      <div>{cards?.map((init) => <Page key={init.id} init={init} />)}</div>
     </div>
 
   );
