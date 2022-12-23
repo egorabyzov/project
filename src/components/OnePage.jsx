@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function OnePage({post}) {
-  const buttonHandler = () => { window.location.href = '/user/id'; };
+export default function OnePage({ post }) {
+  const buttonHandler = () => { window.location.href = `/user/${post.id}`; };
 
   return (
     <div className="card">
@@ -20,7 +20,7 @@ export default function OnePage({post}) {
         </p>
         <button type="button" className="btn btn-dark" style={{ marginRight: '20px' }}>Проголосовать за</button>
         <button type="button" className="btn btn-dark" style={{ marginRight: '20px' }}>Проголосовать против</button>
-        <button type="button" onClick={buttonHandler} className="card-link">Другие инициативы автора</button>
+        <button type="button" onClick={buttonHandler} className="btn btn-dark" style={{ marginRight: '20px' }}>Другие инициативы автора</button>
       </div>
     </div>
   );
