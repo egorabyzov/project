@@ -1,21 +1,19 @@
 import React from 'react';
 
-export default function Page({ activity }) {
+export default function PersonalPosts({ posts }) {
   return (
     <div className="task" style={{ margin: '15px 0' }}>
       <ul>
         <li style={{ listStyleType: 'none' }} className="pipe-separate t-light-green left">
           <a
             style={{ textDecoration: 'none' }}
-            href={`/page/${activity.id}`}
+            href={`/page/${posts.id}`}
           >
-            {activity.title}
+            {posts.title}
 
           </a>
         </li>
-
-        <li>{activity.for}</li>
-        <li>{activity.description}</li>
+        <li>{posts.description}</li>
 
       </ul>
 
