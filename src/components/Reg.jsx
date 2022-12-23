@@ -7,12 +7,6 @@ export default function Registration() {
   });
   const [fo, setFo] = useState({});
 
-  useEffect(() => {
-    fetch('/auth/allvalue')
-      .then((res) => res.json())
-      .then((data) => setFo(data));
-  }, []);
-
   const submitHandler = async (e) => {
     e.preventDefault();
     const response = await fetch('/auth/reg', {
@@ -22,7 +16,6 @@ export default function Registration() {
       },
       body: JSON.stringify(input),
     });
-
     if (response.ok) {
       window.location.href = '/'; // редирект на главную
       // setInput({ name: '' }); // если хотим очистить инпут
@@ -31,6 +24,12 @@ export default function Registration() {
       setError(data.message);
     }
   };
+  
+  useEffect(() => {
+    fetch('/auth/allvalue')
+      .then((res) => res.json())
+      .then((data) => setFo(data));
+  }, []);
 
   const changeHandler = (e) => setInput((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   return (
@@ -39,7 +38,7 @@ export default function Registration() {
       style={{
         width: '400px',
         margin: '0 auto',
-        marginTop: '2%',
+        marginTop: '7%',
       }}
     >
       <h1>Регистрация</h1>
@@ -92,11 +91,11 @@ export default function Registration() {
         </div>
         <br />
         <div className="field">
-          <label className="label">Федеральный округ</label>
           <div
             className="wrapper"
           >
             <select value={input.federal} name="federal" id="" className="form-control" onChange={changeHandler}>
+              <option value="">Выберите федеральный округ</option>
               {fo.fed?.map((el) => (
                 <option key={el.id}>{el.name}</option>
               ))}
@@ -105,11 +104,11 @@ export default function Registration() {
         </div>
         <br />
         <div className="field">
-          <label className="label">Регион</label>
           <div
             className="wrapper"
           >
             <select value={input.region} name="region" id="" className="form-control" onChange={changeHandler}>
+              <option value="">Выберите регион</option>
               {fo.region?.map((el) => (
                 <option key={el.id}>{el.name}</option>
               ))}
@@ -118,11 +117,11 @@ export default function Registration() {
         </div>
         <br />
         <div className="field">
-          <label className="label">Муниципалитет</label>
           <div
             className="wrapper"
           >
             <select value={input.city} name="city" id="" className="form-control" onChange={changeHandler}>
+              <option value="">Выберите муниципалитет</option>
               {fo.city?.map((el) => (
                 <option key={el.id}>{el.name}</option>
               ))}
