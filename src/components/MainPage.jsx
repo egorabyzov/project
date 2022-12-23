@@ -86,7 +86,7 @@ export default function MainPage({ user, activity }) {
             </div>
           </div>
         ))))}
-
+{/* 
       <div>{cards?.map((init) => <Page key={init.id} init={init} />)}</div>
       <button
         onClick={buttonHandler}
@@ -101,7 +101,7 @@ export default function MainPage({ user, activity }) {
       >
         Добавить инициативу
 
-      </button>
+      </button> */}
     </div>
 
   );
