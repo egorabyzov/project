@@ -3,6 +3,7 @@ import { redirect } from 'react-router-dom';
 import Page from './Page';
 
 export default function MainPage({ user, activity }) {
+  console.log(activity);
   const [init, setInit] = useState([]);
   const [fo, setFo] = useState({});
   const [initFilter, setInitFilter] = useState([]);
@@ -18,6 +19,7 @@ export default function MainPage({ user, activity }) {
     setInitFilter([...init].filter((el) => el.Category.id === +e.target.value));
   };
 
+  // console.log(searchLevel, 'searchLevel');
   useEffect(() => {
     fetch('api/initall')
       .then((res) => res.json())
@@ -85,7 +87,21 @@ export default function MainPage({ user, activity }) {
           </div>
         ))))}
 
-      {/* <div>{cards?.map((init) => <Page key={init.id} activity={init} />)}</div> */}
+      <div>{cards?.map((init) => <Page key={init.id} init={init} />)}</div>
+      <button
+        onClick={buttonHandler}
+        style={{
+          margin: '0 auto',
+          display: 'flex',
+          position: 'sticky',
+          top: '10px',
+        }}
+        type="button"
+        className="btn btn-primary"
+      >
+        Добавить инициативу
+
+      </button>
     </div>
 
   );

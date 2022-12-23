@@ -1,13 +1,14 @@
 import React from 'react';
-import Page from './Page';
+import PersonalPosts from './PersonalPosts';
 
 // условно нам это приходит из БД
 
-export default function UserPosts({ initiatives }) {
+export default function UserPosts({ posts }) {
+
   return (
     <div className="container">
       <h2 style={{ marginTop: '20px' }}>Городские инициативы</h2>
-      <div>{initiatives?.map((init) => <Page key={initiatives.id} initiatives={initiatives} />)}</div>
+      <div>{posts?.map((init) => <PersonalPosts key={init.id} posts={init} />)}</div>
     </div>
   );
 }

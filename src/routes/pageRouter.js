@@ -4,11 +4,12 @@ import { Initiative } from '../../db/models';
 const router = Router();
 
 router.get('/:id', async (req, res) => {
-  // const post = await Initiative.findOne({ where: { id: req.params.id } });
-  // res.json({ post });
-  const initState = {};
+  const post = await Initiative.findOne({ where: { id: req.params.id } });
+  const initState = { post };
   res.render('Layout', initState);
+  // res.json(post);
 });
+
 // .get(async (req, res) => {
 //   await Initiative.findOne({ where: { id: req.params.id } });
 //   res.redirect('/:id'), { id };
@@ -19,6 +20,3 @@ router.patch('/api/vote', async (req, res) => {
 });
 
 export default router;
-
-// взяли из базы данных опреденный пост
-// const post = Initiative.findOne({ where: { id: req.params.id } });
