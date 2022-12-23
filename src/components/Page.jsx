@@ -5,7 +5,7 @@ export default function Page({ init }) {
   return (
 
     <div className="task" style={{ margin: '30px 0', flex: '1 1 45%' }}>
-      <ul style ={{marginLeft: "-30px"}} >
+      <ul style={{ marginLeft: '-30px' }}>
         <li style={{ listStyleType: 'none' }} className="pipe-separate t-light-green left">
           <a
             style={{ textDecoration: 'none' }}
@@ -20,7 +20,12 @@ export default function Page({ init }) {
             Уровень инициативы:
             {init.Level.name}
           </p>
-          <p> Категория: {init.Category.name}</p>
+          <p>
+            {' '}
+            Категория:
+            {' '}
+            {init.Category.name}
+          </p>
           <p>
             {' '}
             Всего голосов:
