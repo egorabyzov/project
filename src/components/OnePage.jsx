@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function OnePage({ post }) {
-  const buttonHandler = () => { window.location.href = `/user/${post.userId}`; };
+  const buttonHandler = () => { window.location.href = `/user/${post.id}`; };
 
   return (
     <div className="card">
