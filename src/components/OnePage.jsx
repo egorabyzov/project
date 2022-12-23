@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export default function OnePage({post}) {
+export default function OnePage({ post }) {
   const buttonHandler = () => { window.location.href = '/user/id'; };
+  const [bu, setBu] = useState({ count: '' });
+
+  const buHandler = () => {
+    setBu((prev) => ({ ...prev, count: post.for += 1 }));
+  };
 
   return (
     <div className="card">
@@ -18,7 +23,7 @@ export default function OnePage({post}) {
           {' '}
           голосов за
         </p>
-        <button type="button" className="btn btn-dark" style={{ marginRight: '20px' }}>Проголосовать за</button>
+        <button onClick={buHandler} type="button" className="btn btn-dark" style={{ marginRight: '20px' }}>Проголосовать за</button>
         <button type="button" className="btn btn-dark" style={{ marginRight: '20px' }}>Проголосовать против</button>
         <button type="button" onClick={buttonHandler} className="card-link">Другие инициативы автора</button>
       </div>
